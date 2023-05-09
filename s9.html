@@ -1,0 +1,37 @@
+Function validateForm() {
+  Var username = document.forms["membershipForm"]["username"].value;
+  Var password = document.forms["membershipForm"]["password"].value;
+  if (username == "") {
+    Alert("Username must be filled out");
+    Return false;
+  }
+  if (password == "") {
+    Alert("Password must be filled out");
+    Return false;
+  }  
+  Return true;
+}
+
+Q. 2)Create your own transactions dataset and apply the above process on your dataset. 
+Ans:
+Items=['item1','item2','item3','item4']
+Transactions = [    ['item1', 'item2', 'item3'],
+    ['item2', 'item3'],
+    ['item1', 'item2', 'item4'],
+    ['item1', 'item4'],
+    ['item2', 'item3', 'item4'],
+    ['item1', 'item3', 'item4'],
+    ['item1', 'item2'],
+    ['item1', 'item3'],
+    ['item3', 'item4'],
+    ['item2', 'item4']
+]
+From mlxtend.preprocessing import TransactionEncoder
+From mlxtend.frequent_patterns import apriori, association_rules
+Te = TransactionEncoder()
+Te_ary = te.fit_transform(transactions)
+Df = pd.DataFrame(te_ary, columns=te.columns_)
+Frequent_itemsets = apriori(df, min_support=0.3, use_colnames=True)
+Association_rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
+Print(frequent_itemsets)
+Print(association_rules)

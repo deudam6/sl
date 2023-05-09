@@ -1,0 +1,59 @@
+<?php
+$conn = pg_connect("host=localhost dbname=your_database_name user=your_username password=your_password");
+if (!$conn) {
+    Echo "Connection failed.";
+    Exit;
+}
+$query = "CREATE TABLE student (
+            Rollno INTEGER PRIMARY KEY,
+            Name VARCHAR(50) NOT NULL,
+            Class VARCHAR(10) NOT NULL
+        )";
+$result = pg_query($conn, $query);
+if (!$result) {
+    Echo "Error creating table: " . pg_last_error($conn);
+    Exit;
+} else {
+    Echo "Table created successfully.<br>";
+}
+$insert_query = "INSERT INTO student (rollno, name, class)
+                    VALUES (1, 'John Doe', '10A'),
+                           (2, 'Jane Smith', '9B'),
+                           (3, 'Bob Johnson', '11C'),
+                           (4, 'Sarah Lee', '12D'),
+                           (5, 'Tom Brown', '8E')";
+$insert_result = pg_query($conn, $insert_query);
+if (!$insert_result) {
+    Echo "Error inserting records: " . pg_last_error($conn);
+    Exit;
+} else {
+    Echo "Records inserted successfully.";
+}
+Pg_close($conn);
+
+Function display_records($table_name) {
+    $conn = pg_connect("host=localhost dbname=your_database_name user=your_username password=your_password");
+    if (!$conn) {
+        Echo "Connection failed.";
+        Exit;
+    }
+    $query = "SELECT * FROM " . $table_name;
+    $result = pg_query($conn, $query);
+    if (!$result) {
+        Echo "Error retrieving records: " . pg_last_error($conn);
+        Exit;
+    }
+    Echo "<table>";
+    Echo "<tr><th>Roll No</th><th>Name</th><th>Class</th></tr>";
+    While ($row = pg_fetch_assoc($result)) {
+        Echo "<tr><td>" . $row['rollno'] . "</td><td>" . $row['name'] . "</td><td>" . $row['class'] . "</td></tr>";
+    }
+    Echo "</table>";
+    Pg_close($conn);
+}
+?>
+
+Import re
+Text = "Hello, #world123! This is a sample text paragraph. It contains special characters and 5 digits."
+Processed_text = re.sub(r'[^a-zA-Z\s]', '', text)
+Print(processed_text)

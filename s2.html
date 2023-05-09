@@ -1,0 +1,74 @@
+Firstpage.html
+<html>
+<body>
+<form method='POST' action="A1Q2_1.php">
+Font Name<input type="text" name="fname">
+<br>
+Font Colour<select name="fcolor">
+<option name="red">Red</option>
+<option name="blue">Blue</option>
+<option name="yellow">Yellow</option>
+<option name="green">Green</option></select>
+<br>
+Background Colour<select name="bcolor">
+<option name="red">Red</option>
+<option name="blue">Blue</option>
+<option name="yellow">Yellow</option>
+<option name="green">Green</option></select>
+<br>
+Size<input type="text" name="size">
+<br>
+<input type="submit" name="submit">
+<input type="reset" name="reset">
+</body>
+</html>
+Secondpage.php
+<?php
+$fn=$_POST['fname'];
+$fc=$_POST['fcolor'];
+$bc=$_POST['bcolor'];
+$sz=$_POST['size'];
+setcookie('fn',$fn);
+setcookie('fc',$fc);
+setcookie('bc',$bc);
+setcookie('sz',$sz);
+echo"<h3>Your Preferences</h3><br>";
+echo"Font Name : ".$fn."<br>";
+echo"Font Color : ".$fc."<br>";
+echo"Background Color : ".$bc."<br>";
+echo"Font Size : ".$sz."<br>";
+echo"Click <a href='A1Q2_2.php'>here</a> to see the changes";
+?>
+Thirdpage.php
+<?php
+$fn=$_COOKIE['fn'];
+$fc=$_COOKIE['fc'];
+$bc=$_COOKIE['bc'];
+$sz=$_COOKIE['sz'];
+?>
+<html>
+<body bgcolor='<?=$bc?>' text='<?=$fn?>'>
+<font color='<?=$fc?>' size='<?=$sz?>'>
+Welcome to PHP Programing!
+</font>
+</body>
+</html>
+
+Import numpy as np
+Import pandas as pd
+From sklearn.model_selection import train_test_split
+From sklearn.linear_model import LinearRegression
+Data = {'YearsExperience': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        'Salary': [50000, 60000, 70000, 80000, 90000, 100000, 110000, 120000, 130000, 140000]}
+Df = pd.DataFrame(data)
+X = df.iloc[:, 0:1].values
+Y = df.iloc[:, 1].values
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=0)
+Print("X_train:\n", X_train)
+Print("y_train:\n", y_train)
+Print("X_test:\n", X_test)
+Print("y_test:\n", y_test)
+Regressor = LinearRegression()
+Regressor.fit(X_train, y_train)
+Print("Coefficients:", regressor.coef_)
+Print("Intercept:", regressor.intercept_)

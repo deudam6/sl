@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>AJAX Program</title>
+	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+</head>
+<body>
+	<label for="name">Enter your name:</label>
+	<input type="text" id="name" name="name">
+	<div id="response"></div>
+	<script src="ajax.js"></script>
+</body>
+</html>
+Ajax file
+$(document).ready(function() {
+	$('#name').on('input', function() {
+		Var name = $(this).val();
+		$.ajax({
+			url: 'server.php',
+			type: 'POST',
+			data: { name: name },
+			success: function(response) {
+				$('#response').html(response);
+			}
+		});
+	});
+});
+File name: Server.php
+<?php
+$name = $_POST['name'];
+if (empty($name)) {
+	Echo 'Stranger, please tell me your name!';
+}
+Else if ($name == 'Rohit' || $name == 'Virat' || $name == 'Dhoni' || $name == 'Ashwin' || $name == 'Harbhajan') {
+	Echo 'Hello, master!';
+}
+Else {
+	Echo $name . ', I don\'t know you!';
+}
+
+Import pandas as pd
+Import numpy as np
+From sklearn.model_selection import train_test_split
+From sklearn.linear_model import LinearRegression
+url = https://archive.ics.uci.edu/ml/machine-learning-databases/nursery/nursery.data
+names = ['parents', 'has_nurs', 'form', 'children', 'housing', 'finance', 'social', 'health', 'class']
+dataset = pd.read_csv(url, names=names)
+X = dataset.drop('class', axis=1)
+Y = dataset['class']
+X = pd.get_dummies(X)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+Model = LinearRegression()
+Model.fit(X_train, y_train)
+Print("Intercept: ", model.intercept_)
+Print("Coefficients: ", model.coef_)
+Y_pred = model.predict(X_test)
+Mse = np.mean((y_test - y_pred) ** 2)
+Print("MSE: ", mse)

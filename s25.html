@@ -1,0 +1,59 @@
+<CricketTeam>
+<Team country="Australia">
+<player>____</player>
+<runs>______</runs>
+<wicket>____</wicket>
+</Team>
+</CricketTeam>
+Write a script to add multiple elements in "cricket.xml" file of category, country="India".
+Ans:
+<?php
+$doc = new DOMDocument();
+$cricketTeam = $doc->createElement("CricketTeam");
+$teamAustralia = $doc->createElement("Team");
+$teamAustralia->setAttribute("country", "Australia");
+$player1 = $doc->createElement("player", "Steve Smith");
+$teamAustralia->appendChild($player1);
+$runs1 = $doc->createElement("runs", "7090");
+$teamAustralia->appendChild($runs1);
+$wicket1 = $doc->createElement("wicket", "17");
+$teamAustralia->appendChild($wicket1);
+$cricketTeam->appendChild($teamAustralia);
+$teamIndia = $doc->createElement("Team");
+$teamIndia->setAttribute("country", "India");
+$player2 = $doc->createElement("player", "Virat Kohli");
+$teamIndia->appendChild($player2);
+$runs2 = $doc->createElement("runs", "12169");
+$teamIndia->appendChild($runs2);
+$wicket2 = $doc->createElement("wicket", "4");
+$teamIndia->appendChild($wicket2);
+$category = $doc->createElement("category", "Captain");
+$teamIndia->appendChild($category);
+$cricketTeam->appendChild($teamIndia);
+$doc->appendChild($cricketTeam);
+$doc->save("cricket.xml");
+Echo "Elements added successfully!";
+?>
+
+Import pandas as pd
+Import nltk
+From nltk.sentiment.vader import SentimentIntensityAnalyzer
+Df = pd.read_csv('covid_2021_1.csv')
+Df.dropna(inplace=True)
+Df.drop_duplicates(subset='Comment', inplace=True)
+Nltk.download('punkt')
+Df['tokens'] = df['Comment'].apply(nltk.word_tokenize)
+Nltk.download('vader_lexicon')
+Sia = SentimentIntensityAnalyzer()
+Df['sentiment'] = df['Comment'].apply(lambda x: sia.polarity_scores(x)['compound'])
+Total_comments = len(df)
+Positive_comments = len(df[df['sentiment'] > 0])
+Negative_comments = len(df[df['sentiment'] < 0])
+Neutral_comments = len(df[df['sentiment'] == 0])
+Positive_percentage = (positive_comments / total_comments) * 100
+Negative_percentage = (negative_comments / total_comments) * 100
+Neutral_percentage = (neutral_comments / total_comments) * 100
+Print('Total Comments:', total_comments)
+Print('Positive Comments:', positive_comments, '(', positive_percentage, '%)')
+Print('Negative Comments:', negative_comments, '(', negative_percentage, '%)')
+Print('Neutral Comments:', neutral_comments, '(', neutral_percentage, '%)')

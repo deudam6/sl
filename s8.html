@@ -1,0 +1,29 @@
+Alert('Exams are near, have you started preparing for?');
+Let num1 = prompt('Enter first number:');
+Let num2 = prompt('Enter second number:');
+Let confirmMsg = `Are you sure you want to add ${num1} and ${num2}?`;
+Let confirmResult = confirm(confirmMsg);
+if (confirmResult) {
+  Num1 = parseInt(num1);
+  Num2 = parseInt(num2);
+  Let sum = num1 + num2;
+  Alert(`The sum of ${num1} and ${num2} is ${sum}.`);
+}
+
+Import pandas as pd
+From mlxtend.preprocessing import TransactionEncoder
+From mlxtend.frequent_patterns import apriori, association_rules
+Df = pd.read_csv('market_basket.csv')
+# Drop any rows with null values
+Df.dropna(inplace=True)
+Te = TransactionEncoder()
+Te_ary = te.fit(df.values).transform(df.values)
+Df = pd.DataFrame(te_ary, columns=te.columns_)
+Frequent_itemsets = apriori(df, min_support=0.01, use_colnames=True)
+Rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1)
+Print("Dataset information:")
+Print(df.info())
+Print("\nFrequent itemsets:")
+Print(frequent_itemsets)
+Print("\nAssociation rules:")
+Print(rules)
